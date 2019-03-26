@@ -1,6 +1,6 @@
 # Part Two: Design
 ## Chapter 4: Modularity
-* There are two ways of constructing a software design.  One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated there are no obvious deficiencies.  The first method is far more difficult.  - C. A. R. Hoare
+* _There are two ways of constructing a software design.  One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated there are no obvious deficiencies.  The first method is far more difficult._  - C. A. R. Hoare
 * Code partitioning methods have evolved over time
 	* One big “pile” of machine code
 	* Partition by subroutine
@@ -9,11 +9,12 @@
 	* disturbing program systems across multiple hosts operated geographically
 * We want simple modules connected by well-defined interfaces
 	* _note:_ this is why we want to keep internals of classes private whenever possible, and to expose the smallest API we can
+	* Exposed functions that are called by other classes/programs can't be refactored out in the future as easily
 * History; in  the languages commonly used in 1970, function calls were expensive;  this actually made programming modularly expensive in machine time. This story:
-	* Dennis Ritchie encouraged modularity by telling all and sundry that function calls were really, really cheap in C.  Everybody started writing small functions and modularizing.  Years later we found out that function calls were still expensive on the PDP-11, and VAX code was often spending 50% of it’s time in the CALLS instruction.   Dennis had lied to us!  But it was too late; we were all hooked…
+	* _Dennis Ritchie encouraged modularity by telling all and sundry that function calls were really, really cheap in C.  Everybody started writing small functions and modularizing.  Years later we found out that function calls were still expensive on the PDP-11, and VAX code was often spending 50% of it’s time in the CALLS instruction.   Dennis had lied to us!  But it was too late; we were all hooked…_
 
 ### Encapsulation and Optimal Module Size
-* _Encapsulation_
+* _Encapsulation_:
 	* Modules don’t expose their internals to each other,
 	* they don’t call into the middle of others implementations
 	* they don’t promiscuously share global data
@@ -22,7 +23,7 @@
 	* APIs define your architecture
 * Software systems should be hierarchies of nested modules, with the grain size of the modules at each level held to a minimum
 * Very small and very large modules are associated with the most bugs
-	* Associated, as in with math.  This holds across system implementations on languages
+	* Statistically correlated, this holds across system implementations on languages
 
 ### Compactness and Orthogonality
 * _Compactness:_ the property that a design can fit inside a human being’s head
@@ -30,10 +31,10 @@
 	* The number of discrete items of information human beings can hold in short-term memory is seven, plus or minus two (_Miller_)
 		* Do we need to remember more than seven entry points to an API?
 	* Note that still, some problem domains are too complex for a compact design to span them. - we might need to trade off compactness for raw power, range, or something else
-* _Orthogonality_ - operations do not have side effects; each action changes just one thing without affecting others.  There is one and only one way to change each property of the system
+* _Orthogonality_: operations do not have side effects; each action changes just one thing without affecting others.  There is one and only one way to change each property of the system
 	* “Do one thing well”
-		* Both simplicity and Orthogonality
-* _Refactoring:_ change code’s structure and organization without changing its observable behavior
+		* Both simplicity and orthogonality
+* _Refactoring_: change code’s structure and organization without changing its observable behavior
 	* See ‘Extreme Programming’
 
 ### The SPOT Rule
@@ -46,11 +47,11 @@
 * Caches should only be used if absolutely necessary, because stale caches and synchronization code is often a source of bugs
 
 ### Software is a Many-Layer Thing
-* _Bottom-up:_ Concrete to abstract
+* _Bottom-up_: concrete to abstract
 	* Unix programmers prefer this
 	* You throw away less code
-*  _Top-Down:_ Abstract to Concrete - from highest level specification describing the project as a whole, application logic, down to individual operations
-	* Often tough to be correct, especially when:
+*  _Top-Down_: abstract to concrete - from highest level specification describing the project as a whole, application logic, down to individual operations
+	* Often thought to be correct, especially when:
 		1. You can specify in advance precisely what the program is to do
 		2. The specification is unlikely to change significantly during implementation
 		3. You have a lot of freedom in choosing, at a low level, how the program is to get that job done
@@ -90,7 +91,7 @@
 * When you feel the urge to design a complex binary file format, or a complex binary application protocol, it is generally wise to lie down until the feeling passes
 * Textual formats serve to future proof your system (vs binary formats)
 * Example `.newsrc` file
-	* ![](Art%20of%20Unix%20Programming/Screen%20Shot%202019-03-10%20at%201.42.19%20PM.png)
+  ![](https://github.com/Quasimonomial/tech_notes/blob/master/art_of_linux_programming/images/news_rc.png)
 	* Each line sets properties for a news grew named by the first field
 	* Then a `:` indicates subscription, `!` indicates non subscription
 	* We have article numbers and ranges to indicate which articles have been seen
