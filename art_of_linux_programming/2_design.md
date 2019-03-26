@@ -91,17 +91,17 @@
 * When you feel the urge to design a complex binary file format, or a complex binary application protocol, it is generally wise to lie down until the feeling passes
 * Textual formats serve to future proof your system (vs binary formats)
 * Example `.newsrc` file
-  ![](https://github.com/Quasimonomial/tech_notes/blob/master/art_of_linux_programming/images/news_rc.png)
-	* Each line sets properties for a news grew named by the first field
-	* Then a `:` indicates subscription, `!` indicates non subscription
-	* We have article numbers and ranges to indicate which articles have been seen
-	* A binary format might be faster but this would not be human readable
+* ![](images/news_rc.png)
+  * Each line sets properties for a news grew named by the first field
+  - Then a `:` indicates subscription, `!` indicates non subscription
+  - We have article numbers and ranges to indicate which articles have been seen
+  - A binary format might be faster but this would not be human readable
 * Example `XML`
 	* Angle bracketed tags andampersand-led literal sequences
 	* simple plain-text markup
 	* Expresses recursively nested data structures
 	* Low-level syntax, requires document the definition
-	* ![](Art%20of%20Unix%20Programming/Screen%20Shot%202019-03-10%20at%201.52.53%20PM.png)
+	* ![](images/xml.png)
 
 ### Unix Textual File Format Conventions
 * One Record per newline-terminated line, if possible
@@ -152,7 +152,7 @@
 
 ### Case Study: Freeciv Data Files
 * _Freeciv_ is an open source Civilization-2 like game
-* ![](Art%20of%20Unix%20Programming/Screen%20Shot%202019-03-13%20at%202.59.56%20PM.png)
+* ![](images/freeciv.png)
 * Has client-server partitioning
 	* server maintains shared state and client presents the GUI
 * Fixed data of the game is read from a property registry at server startup time, rather than being fixed by server code
@@ -251,7 +251,7 @@
 
 ### Example: HTML Tables
 
-![](Art%20of%20Unix%20Programming/Screen%20Shot%202019-03-24%20at%2012.04.24%20PM.png)
+![](images/html_table.png)
 
 * Consider wanting this information into an HTML table
 * Think about hand writing all the <tr> and <td>, but obviously this is bad because if anything changes it becomes hard to maintain, we want to have some language to generate all the HTML from the output.
@@ -319,7 +319,7 @@
 	* It’s a compiler
 * Rougelike pattern:
 	* Consider _Nethack_
-	* ![](Art%20of%20Unix%20Programming/Screen%20Shot%202019-03-25%20at%203.05.10%20PM.png)
+	* ![](images/roguelike.png)
 	* Commands are single keystrokes that do something
 	* Sometimes this is opening a submenu - we get arrow keys, etc
 	* Lots of commands from _vi_ and _emacs_
