@@ -4,11 +4,11 @@
 * Code partitioning methods have evolved over time
 	* One big “pile” of machine code
 	* Partition by subroutine
-	* service libraries to share common utility functions across multiple programs
-	* separated address spaces and communicating processes
-	* disturbing program systems across multiple hosts operated geographically
+	* Service libraries to share common utility functions across multiple programs
+	* Separated address spaces and communicating processes
+	* Disturbing program systems across multiple hosts operated geographically
 * We want simple modules connected by well-defined interfaces
-	* _note:_ this is why we want to keep internals of classes private whenever possible, and to expose the smallest API we can
+	* _Note:_ this is why we want to keep internals of classes private whenever possible, and to expose the smallest API we can
 	* Exposed functions that are called by other classes/programs can't be refactored out in the future as easily
 * History; in  the languages commonly used in 1970, function calls were expensive;  this actually made programming modularly expensive in machine time. This story:
 	* _Dennis Ritchie encouraged modularity by telling all and sundry that function calls were really, really cheap in C.  Everybody started writing small functions and modularizing.  Years later we found out that function calls were still expensive on the PDP-11, and VAX code was often spending 50% of it’s time in the CALLS instruction.   Dennis had lied to us!  But it was too late; we were all hooked…_
@@ -98,7 +98,7 @@
   - A binary format might be faster but this would not be human readable
 * Example `XML`
 	* Angle bracketed tags andampersand-led literal sequences
-	* simple plain-text markup
+	* Simple plain-text markup
 	* Expresses recursively nested data structures
 	* Low-level syntax, requires document the definition
 	* ![](images/xml.png)
@@ -115,7 +115,7 @@
 * Favor Hex over Octal
 * For complex records, use a stanza format: multiple lines per record, with a record separator line of `%%\n` or `%/n`
 * Either include a version number or design the format as self-describing chunks independent of each other
-	* what if you need to change or extend the format?
+	* What if you need to change or extend the format?
 	* We want to add new chunk types without changing the code
 * Beware of floating-point road off problems
 * Don’t bother compressing or binary-encoding just part of the file
@@ -129,8 +129,8 @@
 
 ### Let there be light
 * _Transparency_: Software systems are transparent when they don’t have murky corners or hidden paths
-	* a program is transparent when it is possible to form a simple mental model of its behavior that is actually predictive for all or most cases
-	* transparency is about “reducing the cost of living” of the code
+	* A program is transparent when it is possible to form a simple mental model of its behavior that is actually predictive for all or most cases
+	* Transparency is about “reducing the cost of living” of the code
 * _Discoverability_: Software systems are discoverable when they include features that are designed to help you build in your mind a correct mental model of what they do and how they work
 	* Good documentation helps
 	* Good choice of variable and function names help
@@ -146,7 +146,7 @@
 ### Case Study: kmail
 * _kmail_ is a GUI mailreader
 * _kmail_ has small notifications in a subwindow
-	* its easy to ignore these notifications but easy t focus on them when you need to
+	* Its easy to ignore these notifications but easy t focus on them when you need to
 * Good interface design; informative but not distracting
 * Don’t just dumb down your UI,  leave the details accessible but unobtrusive
 
@@ -154,7 +154,7 @@
 * _Freeciv_ is an open source Civilization-2 like game
 * ![](images/freeciv.png)
 * Has client-server partitioning
-	* server maintains shared state and client presents the GUI
+	* Server maintains shared state and client presents the GUI
 * Fixed data of the game is read from a property registry at server startup time, rather than being fixed by server code
 	* These registry files have internal lists of data (nations, unit types, etc)
 	* There is an `include` / `require` directive so we can have hierarchies of registry files, like unit types etc
@@ -193,35 +193,34 @@
 
 ### Pipes, Redirection, and Filters
 * _pipe_: construct that every program have standard input and standard output, so we can chain them together
-* _filters_:  programs that read sequentially from standard input and write only to standard output
+* _Filters_:  programs that read sequentially from standard input and write only to standard output
 * Some Linux/batch commands
 	* `ls >foo.txt`
-		* sends output of `ls` to `foo.txt`, giving us a file of the current directory listing
+		* Sends output of `ls` to `foo.txt`, giving us a file of the current directory listing
 	* `wc <foo.txt`
-		* sends `foo.txt` as input to `wc`, getting us the word count of that file
+		* Sends `foo.txt` as input to `wc`, getting us the word count of that file
 	*   `ls | wc`
 		* We run `ls` and send output to `wc`, resulting in the word count of the current directory listing
 		* Connecting programs with pipe this way gives us a _pipeline_
 * Pipes are unidirectional
 * Child programs may need to both accept data from and return data to their callers through pipes connected to standard input and output, interactively
-	* both master and sale processes need to have internal state machines to handle a protocol between them without deadlocking or racing
+	* Both master and sale processes need to have internal state machines to handle a protocol between them without deadlocking or racing
 * In a master/slave pair, the master should support a command-line switch variable that allows callers to set their own sale command, which helps with debugging
 * Consider (not related to m/s) we have SQL implementations, which are used by a lot of applications, but we do not want our software to deal with the internals of managing the database, just talking to middleware
 
 ## Chapter 8: Minilangauges
 * Programmer error rates in defects per hundreds of lines are largely independent of the language in which the programmers are coding
-	* it follows that we get fewer bugs in higher level languages that allow getting more done in fewer lines\
-* Domain specific languages such as _make_, typesetting languages, shell utilities, etc, are called _minilanguages_
+	* it follows that we get fewer bugs in higher level languages that allow getting more done in fewer lines
+* _Minilanguages_: Domain specific languages such as _make_, typesetting languages, shell utilities, etc
 	* Since we want to use these in very specific contexts, we want our designs to be small and simple.
 * Minilanguages are good because we can write in very expressive languages and have our lower level code deal with implementation
 	* Think of rails generators and rails to html code
-* Minilangauges can evolve out of specification files
 * Ad-hoc building these languages is bad
 
 ### Case Study: Regex
-* _Regex_, _regexp_, _Regular Expressions_
+* _Regex_, _regexp_, _regular expressions_
 * This is a declarative minilanguage for describing text patterns, and other languages can use it
-* Also describe patterns hat match or fail against strings
+* describes patterns that match or fail against strings
 
 ### Case Study: Javascript
 * Note that some languages are Turing complete or not, JS is
@@ -247,20 +246,20 @@
 	* Object Oriented programming uses data to store the state of some object
 * When doing code generation or data driven programming, **always push problems upstream**
 	* Don’t hack generated code and don’t change your intermediate representations
-	* improve translation tool or your initial data instead
+	* Improve translation tool or your initial data instead
 
 ### Example: HTML Tables
 
 ![](images/html_table.png)
 
-* Consider wanting this information into an HTML table
-* Think about hand writing all the <tr> and <td>, but obviously this is bad because if anything changes it becomes hard to maintain, we want to have some language to generate all the HTML from the output.
+* Consider representing this information into an HTML table
+* As opposed to hand writing all the `<tr>`s and `<td>`s, we want to generate all the HTML from our table.  Otherwise it isn't maintainable (what if we want to change the structure of our data cells, etc).
 
 * In conclusion:
 	* Do as little work as possible
 	* Let the data shape the code
-	* lean on tools
-	* separate mechanism from policy
+	* Lean on tools
+	* Separate mechanism from policy
 
 ## Chapter 10: Configuration
 ### What should be Configurable
@@ -300,21 +299,21 @@
 	* Photoshop is an example of a program that is inherently visual
 * Filter Pattern:
 	* Takes data on standard input
-	* transforms it
-	* sends it to standard output
-	* not interactive
+	* Transforms it
+	* Sends it to standard output
+	* Not interactive
 * Cantrip Pattern:
 	* No input, no output, just invocation and numeric exit status
 	* Program can call cantrips to accomplish tasks
 	* Named after Scottish wizards of course
 * Source Pattern:
-	* filter-like program that requires no input
-	* output is controlled by startup conditions
-	* consider `ls`
+	* Filter-like program that requires no input
+	* Output is controlled by startup conditions
+	* Consider `ls`
 * Sink Pattern:
 	* A filter-like program that consumes standard input but emits nothing to standard output
 	* Like the source pattern, actions are only controlled by startup conditions
-	* more unusual
+	* More unusual, we do not see this as often
 * Compiler Pattern
 	* It’s a compiler
 * Rougelike pattern:
@@ -326,21 +325,21 @@
 	* Vim is a roguelike lol
 * 	We can design better programs by separating the interface and the engine into different programs
 * Model-View-Controller pattern for GUIs
-	* _Model_, or Engine: Domain specific data structures and logic for the application
+	* _Model_, or _Engine_: Domain specific data structures and logic for the application
 	* _View_: renders domain objects into visible form
 		* Well separated MVC applications allow the view to react to the model on it’s own, but this isn’t quite true for say,, a web server, when request for model updates go through the control itself
 	* _Controller_: Prowesses user requests and passes them as commands to the model
 * Configurator / Actor Pair
-	* interface part controls startup environment of filter or daemon-like program that runs w/o further commands
+	* Interface part controls startup environment of filter or daemon-like program that runs w/o further commands
 * Spooler / Daemon Pair
 	* Useful in situations with access to some shared resource; a well defined job stream or sequence of requests requires this resource, but none of these jobs require user interaction
 	* The front end / cooler drops job requests as files to a directory, or spool area.  
 	* The daemon runs in the background, polls the spool directory, and does any work that has been requested, then deletes the jobs
 	* Composed of
 		* A job launcher
-		* a queue listener
-		* job cancellation utility
-		* spooler daemon
+		* A queue listener
+		* A Job cancellation utility
+		* A Spooler daemon
 * Driver/Engine Pair
 	* Interface supplies commands to and receives output from an engine after startup
 	* These programs tend to be more highly coupled
@@ -352,12 +351,12 @@
 	* Lol wait this actually just happened
 	* This is helpful because GUIs and user interaction is shared across many websites
 	* This is bad because
-		* the web enforces a batch style of interaction
-		* managing persistent sessions using a stateless protocol is non trivial
+		* The web enforces a batch style of interaction
+		* Managing persistent sessions using a stateless protocol is non trivial
 * The Rule of Silence
 	* Programs with nothing interesting or surprising to say should shut up
 	* If you don’t follow this, you program doesn’t play well with other programs
-	* Programs that emit bad output will need to have that output parsed by humans
+	* Programs that emit too much extra output will need to have that output parsed by humans, increasing cognitive load
 
 
 ## Chapter 12: Optimization
@@ -366,18 +365,18 @@
 * We use O(n) and O(n^2) because reducing resources use by a constant factor rarely matters
 	* Moore’s law eats linear performance gains
 * Measure before optimizing
-* Heisenbergs uncertain principle as applied to code profilers: code that measures the time your code takes itself takes time, so it adds in noise
+* [Heisenbergs uncertain principle](https://en.wikipedia.org/wiki/Uncertainty_principle) as applied to code profilers: code that measures the time your code takes itself takes time, so it adds in noise
 	* the instrumentation / noise problem
 * Throughput vs Latency
 	* Especially with internet programs, fast processors make it such that performance is bounded by cost of I/O and network transactions
 	* Avoiding protocol round trips - see N+1 errors when accessing databases
 	* Consider choosing between doing an expensive computation once beforehand assuming we will do it multiple times, or computing only when needed, which will result in recomputing the results
-		* choose low latency, and don’t precompute.  Processor cycles are cheap
-		* gives us shorter startup time and response
+		* Choose low latency, and don’t precompute.  Processor cycles are cheap
+		* Gives us shorter startup time and response
 	* Reduce latency by
-		* batching transactions that share startup costs
-		* allow transactions to overlap
-		* cache things
+		* Batching transactions that share startup costs
+		* Allow transactions to overlap
+		* Cache things
 
 ## Chapter 13: Complexity
 * As simple as possible, but no simpler
