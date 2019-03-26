@@ -47,11 +47,11 @@
 	16. _Rule of Diversity:_ Distrust all claims for “one true way”
 	17. _Rule of Extensibility:_  Design for the future, because it will be sooner than you think
 * 	**Rule of Modularity**
-	* *Write simple parts connected by clean interfaces
+	* Write simple parts connected by clean interfaces
 	* Control complexity as debugging dominates developer time
 * **Rule of Clarity**
 	* Codebase maintenance is both important and expensive
-	* programs should care first about communicating themselves to humans
+	* Programs should care first about communicating themselves to humans
 	* This goes above comments; you code should be clear and reasonable when possible
 	* Buying small performance increases with large increases in complexity hurts in the long run
 	* Complex code is harder to maintain and is more suspect able to bugs
@@ -73,12 +73,12 @@
 	* Small is beautiful
 * **Rule of Parsimony**
 	* Write a big program only when it is clear by demonstration that nothing else will do
-	* large programs are less maintainable
+	* Large programs are less maintainable
 * **Rule of Transparency**
 	* Design for visibility to make inspection and debugging easier
 	* Design for transparency and discoverability
-		* _transparency_ is when you can look at a software system and immediately understand what it is doing and how
-		* _discoverability_ is when software has facilities for monitoring and displaying its internal state
+		* _Transparency_: when you can look at a software system and immediately understand what it is doing and how
+		* _Discoverability_: when software has facilities for monitoring and displaying its internal state
 	* Debugging options should be designed in from the beginning
 	* Programs should be able to demonstrate their correctness
 * **Rule of Robustness**
@@ -96,9 +96,9 @@
 	* Principle of Least Astonishment
 	* In interface design, always do the least surprising thing
 	* Demanding learning from the user is bad
-	* pay attention to your expected audience
-	* pay attention to tradition
-	* the worst thing is if your program is _almost_ the same as what the user is used to!
+	* Pay attention to your expected audience
+	* Pay attention to tradition
+	* The worst thing is if your program is _almost_ the same as what the user is used to!
 * **Rule of Silence**
 	* When a program has nothing surprising to say, it should say nothing
 * **Rule of Repair**
@@ -137,7 +137,7 @@
 
 ## Chapter 2: History
 * While this chapter is very fascinating, it has very little in the way of actionable coding advice, so I won’t be covering it in detail
-* things that are emphasized are the open source movement, Richard Stallman’s work, the origins of Unix at bell labs,  the rise of Unix based systems in the 90s
+* Things that are covered include the open source movement, Richard Stallman’s work, the origins of Unix at bell labs,  the rise of Unix based systems in the 90s
 
 
 ## Chapter 3: Contrasts
@@ -148,16 +148,16 @@
 	2. Uniformities forced on designs by costs and limitations in the programming environment
 	3. Random cultural draft; early practices become traditional simple because they were first
 * Operating systems have unifying ideas
-	* “everything is a file“ model
-	* “we can pipe datastreams between programs”  
+	* “Everything is a file“ model
+	* “We can pipe datastreams between programs”  
 
 #### Unix operating system properties
 
 * **Mulitasking Capability**
 	* We can have a sequential program loader with no multitasking at all (obsolete)
-	* _Cooperative multitasking_ - systems can support multiple processes, but a process has to voluntarily give up its hold on the processor before the next one can run
-		* obsolete because small errors can lock up the whole machine
-	* _Preemptive multitasking_ (Unix) - time slices are allocated by a scheduler, which itself interrupts the running process and hands control to the next process
+	* _Cooperative multitasking_: systems can support multiple processes, but a process has to voluntarily give up its hold on the processor before the next one can run
+		* Obsolete because small errors can lock up the whole machine
+	* _Preemptive multitasking_ (Unix): time slices are allocated by a scheduler, which itself interrupts the running process and hands control to the next process
 		* Modern operating systems support this
 * **Cooperating processes**
 	* We want spawning new processes to be cheap in our operating system.  Otherwise:
@@ -175,7 +175,7 @@
 	* Unix files have neither record structure no attributes
 * **Binary File formats**
 	* All your files should be human readable text formats
-	* that means a text editor can edit the files
+	* That means a text editor can edit the files
 	* Otherwise data is accessible only through dedicated tools
 * **Preferred User Interface Style**
 	* _CLIs_ - Command Line interfaces
@@ -187,18 +187,18 @@
 	* In case you can’t tell, Unix prefers CLIs (a lot of this book is a by coders for coders vibe)
 * **Intended Use**
 	* _Client_
-		* lightweight
-		* supporting a single user
-		* able to run on small machines
-		* designed to be switched on when needed and off when the user is done
-		* lack pre-emptive multitasking
-		* optimized for low latency
-		* fancy user interfaces
+		* Lightweight
+		* Supporting a single user
+		* Able to run on small machines
+		* Designed to be switched on when needed and off when the user is done
+		* Lack pre-emptive multitasking
+		* Optimized for low latency
+		* Fancy user interfaces
 	* _Server_
-		* heavyweight
-		* capable of running continuously
-		* optimized for throughput
-		* fully preemptively multitasking to handle multiple sessions
+		* Heavyweight
+		* Capable of running continuously
+		* Optimized for throughput
+		* Fully preemptively multitasking to handle multiple sessions
 	* Originally all operating systems were server operating systems, until we had inexpensive hardware in the 1970s
 
 #### Operating System overview
